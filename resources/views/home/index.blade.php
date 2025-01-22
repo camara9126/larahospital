@@ -58,7 +58,7 @@
     </section>
 
     <section id="search">
-        <!-- include('home.search') -->
+        include('home.search')
     </section>
 
     <section id="gallery">

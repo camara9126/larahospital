@@ -1,7 +1,7 @@
 <div class="container pt-5 mb-5">
 
     <h2 class="mb-lg-3 mb-5 text-center">
-        <?= ucwords("Rechercher l’historique des rendez-vous par numéro de téléphone portable")  ?></h2>
+        {{ucwords("Rechercher l’historique des rendez-vous par numéro de téléphone portable")}} </h2>
     <form action="" method="post">
         <div class="row pt-4">
             <div class="form-group col-md-10">
