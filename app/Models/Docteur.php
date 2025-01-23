@@ -12,14 +12,11 @@ class Docteur extends Model
     protected $fillable = [
         'nom',
         'telephone',
+        'titre',
         'email',
-        'specialistion',
+        'specialisation',
         'biographie',
         'password',
     ];
 
-    public function reservation()
-    {
-        return $this->hasMany(reservation::class);
-    }
 }

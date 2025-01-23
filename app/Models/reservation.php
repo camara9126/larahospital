@@ -17,10 +17,7 @@ class reservation extends Model
         'message',
         'id_docteur',
         'statut',
+        'docteur',
     ];
 
-    public function docteur()
-    {
-        return $this->belongsTo(Docteur::class);
-    }
 }
