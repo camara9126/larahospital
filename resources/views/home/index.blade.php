@@ -1,6 +1,7 @@
 @include('partials.header')
+   
     <a href="#site" id="top">Haut</a>
-
+    
     <section class="hero pt-4" id="home">
         <div class="container-fluid mt-5">
             
@@ -27,7 +28,15 @@
             
         </div>
     </section>
-
+    @if(Session::has('success'))
+        <div class="alert alert-success mt-3" role="alert">
+            <h5 class="text-center text-success">{{ Session::get('success') }}</h5>
+        </div>
+    @elseif(Session::has('danger'))
+        <div class="alert alert-danger mt-3" role="alert">
+            <h5 class="text-center text-danger">{{ Session::get('danger') }}</h5>
+        </div>
+    @endif
     <section class="section-padding mt-5" id="about">
         <div class="container pt-5">
             <div class="row">
@@ -97,7 +106,7 @@
         <div class="container pt-5 mb-5">
             <h2 class="mb-lg-3 mb-5 text-center">{{ ucwords("Prendre une reservation")  }}</h2>
 
-            <!-- include('home.reservation') -->
+            @include('home.reservation')
         </div>
     </section>
 

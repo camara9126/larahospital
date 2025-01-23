@@ -1,66 +1,39 @@
-<div class="container pt-5 mb-5">
-
-    <h2 class="mb-lg-3 mb-5 text-center">
-        {{ucwords("Rechercher l’historique des rendez-vous par numéro de téléphone portable")}} </h2>
-    <form action="" method="post">
-        <div class="row pt-4">
-            <div class="form-group col-md-10">
-                <input type="text" name="tel" class="form-control"
-                    placeholder="L'historique des rendez-vous par numéro de téléphone">
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-success" name="rechercher">Rechercher</button>
-            </div>
+    @if(Session::has('success'))
+        <div class="alert alert-success mt-3" role="alert">
+            <h5 class="text-center text-success">{{ Session::get('success') }}</h5>
         </div>
-    </form>
-
-    <?php if (isset($rvs) && count($rvs) > 0) : ?>
-        
-    <div class="card shadow mb-4">
-        <div class="card-header py-3 bg-success">
-            <h6 class="m-0 font-weight-bold text-white">Liste des rendez-vous trouvé</h6>
+    @elseif(Session::has('danger'))
+        <div class="alert alert-danger mt-3" role="alert">
+            <h5 class="text-center text-danger">{{ Session::get('danger') }}</h5>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Tel</th>
-                            <th>Email</th>
-                            <th>Docteur</th>
-                            <th>Date</th>
-                            <th>Heure</th>
-                            <th>Statut</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($rvs as $n) : ?>
-                        <tr>
-                            <td><?= $n->nom ?></td>
-                            <td><?= $n->tel ?></td>
-                            <td><?= $n->email ?></td>
-                            <td><?= $n->nomdoc ?></td>
-                            <td><?= date("d/m/Y", strtotime($n->daterv)) ?></td>
-                            <td><?= $n->heure ?></td>
-                            <td>
-                                <?php if ($n->statut == 0) : ?>
-                                <span class="text-info">En attente</span>
-                                <?php elseif ($n->statut == 1) : ?>
-                                <span class="text-success">Validé</span>
-                                <?php elseif ($n->statut == 3) : ?>
-                                <span class="text-danger">Rejeté</span>
-                                <?php endif; ?>
+    @endif
 
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
+<form action="{{route('reservation.store')}}" method="post" class="col-md-8 offset-2">
+    @csrf
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <label for="">Nom complet <span class="text-danger">*</span></label>
+            <input type="text" required placeholder="Entrer votre nom complet" name="nom" class="form-control">
+        </div>        
+        <div class="col-md-6 form-group">
+            <label for="">N° Téléphone <span class="text-danger">*</span></label>
+            <input type="text" required placeholder="Entrer votre numérode téléphone" name="contact" class="form-control">
         </div>
     </div>
-    <?php elseif (isset($rvs) && count($rvs) < 1) : ?>
-    <h2 class="text-center pt-5">Aucun Rendez-vous trouvé</h2>
-    <?php endif; ?>
-</div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <label for="">Date <span class="text-danger">*</span></label>
+            <input type="date" name="dateRv" class="form-control">
+        </div>
+        <div class="col-md-6 form-group">
+            <label for="">Heure <span class="text-danger">*</span></label>
+            <input type="time" name="heure" required class="form-control">
+        </div>
+    </div>    
+    <div class="form-group">
+        <label for="">Symptômes</label>
+        <textarea name="message" placeholder="Information supplémentaire" class="form-control"></textarea>
+    </div>
+    <input type="hidden" name="id_docteur" value="1"  class="form-control">
+    <button type="submit" id="adrv" class="btn btn-outline-success">Valider</button>
+</form>
