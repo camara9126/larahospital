@@ -12,7 +12,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        return view('home.reservation');
     }
 
     /**
@@ -40,7 +40,7 @@ class ReservationController extends Controller
 
         reservation::create($validatedData);
 
-        return view('home.index')->with('success', 'Message envoyé avec succès');
+        return redirect()->route('acceuil')->with('success', 'Message envoyé avec succès');
     }
 
     /**

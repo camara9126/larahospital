@@ -14,7 +14,7 @@ class DocteurController extends Controller
      */
     public function index()
     {
-        return view('dashboard.addDocteur');
+        //
     }
 
     /**
@@ -30,26 +30,7 @@ class DocteurController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedDate= $request->validate([
-            'nom' => ['required', 'string', 'max:255'],
-            'telephone' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'lowercase', 'max:255', 'unique:'.Docteur::class],
-            'titre' => ['required', 'string', 'max:255'],
-            'specialisation' => ['required', 'string', 'max:255'],
-            'biographie' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-        // dd($validatedDate);
-        Docteur::create([
-            'nom' => $request->nom,
-            'telephone' => $request->telephone,
-            'email' => $request->email,
-            'titre' => $request->titre,
-            'specialisation' => $request->specialisation,
-            'biographie' => $request->biographie,
-            'password' => Hash::make($request->password),
-        ]);
-        return redirect()->route('dashboard')->with('success', 'Docteur ajouté avec succès');
+        //
     }
 
     /**

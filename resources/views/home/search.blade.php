@@ -1,3 +1,5 @@
+@include('partials.header')
+
 <div class="container pt-5 mb-5">
 
     <h2 class="mb-lg-3 mb-5 text-center">
@@ -64,3 +66,5 @@
     <h2 class="text-center pt-5">Aucun Rendez-vous trouvé</h2>
      <!-- endif -->
 </div>
+
+@include('partials.footer')

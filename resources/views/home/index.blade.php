@@ -102,13 +102,7 @@
         </div>
     </section>
 
-    <section id="reserve">
-        <div class="container pt-5 mb-5">
-            <h2 class="mb-lg-3 mb-5 text-center">{{ ucwords("Prendre une reservation")  }}</h2>
-
-            @include('home.reservation')
-        </div>
-    </section>
+        @include('home.reservation')
 
     <section id="contact">
         <div class="container">

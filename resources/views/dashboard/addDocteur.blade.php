@@ -26,69 +26,76 @@
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-<div class="container card col-md-6">
-    <div class="card-header bg-success">
-        <div class="row">
-            <div class="col-md-10">
-                <h6 class="m-0 font-weight-bold text-white">Formulaire Docteur</h6>
-            </div>
-            <div class="col-md-2 text-md-right">
-                <a href="?page=docteur" class="btn btn-sm btn-warning">Retour</a>
+    <section class="section-padding mt-5" id="reserve">
+        <div class="container pt-5 mb-5">
+            <!-- Page Wrapper -->
+            <div id="wrapper">
+                <div class="container card col-md-6">
+                    <div class="card-header bg-success">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h6 class="m-0 font-weight-bold text-white">Formulaire Docteur</h6>
+                            </div>
+                            <div class="col-md-2 text-md-right">
+                                <a href="/" class="btn btn-sm btn-warning">Retour</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{route('register')}}" method="post">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="">Nom Complet<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" value="old('name')" required name="name">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="">Titre<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" value="old('titre')" required name="titre">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="">Email<span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" value="old('email')" required name="email">
+                                </div> 
+                                <div class="col-md-6 form-group">
+                                    <label for="">Téléphone<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" value="old('telephone')" required name="telephone">
+                                </div> 
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="">Spécialisation <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" value="old('specialite')" required name="specialite">               
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="">Biographie<span class="text-danger">*</span></label>
+                                    <textarea name="biographie" class="form-control" id="biographie"></textarea>
+                                </div> 
+                                
+                            </div>            
+                            <div class="row">               
+                                <div class="col-md-6 form-group">
+                                    <label for="">Mot de passe<span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" required name="password">
+                                </div>  
+                                <div class="col-md-6 form-group">
+                                    <label for="password_confirmation">Confirmer<span class="text-danger">*</span></label>
+                                    <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
+                                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <button type="submit" class="btn btn-outline-success">Creer</button>           
+                                </div>
+                            </div>                
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="card-body">
-        <form action="{{route('docteur.store')}}" method="post">
-            @csrf
-            <div class="row">
-                <div class="col-md-6 form-group">
-                    <label for="">Nom Complet<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" value="" required name="nom">
-                </div>
-                <div class="col-md-6 form-group">
-                    <label for="">Telephone<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" value="" required name="telephone">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 form-group">
-                    <label for="">Email<span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" value="" required name="email">
-                </div> 
-                <div class="col-md-6 form-group">
-                    <label for="">Titre<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" value="" required name="titre">
-                </div> 
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <label for="">Spécialisation <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" required name="specialisation">               
-                </div>
-                <div class="col-md-6 form-group">
-                    <label for="">Biographie<span class="text-danger">*</span></label>
-                    <textarea name="biographie" id="biographie"></textarea>
-                </div> 
-                
-            </div>            
-             <div class="row">               
-                <div class="col-md-6 form-group">
-                    <label for="">Mot de passe<span class="text-danger">*</span></label>
-                    <input type="password" class="form-control" required name="password">
-                </div>  
-            </div>  
-            <div class="row">
-                <label for="password_confirmation">Confirmer<span class="text-danger">*</span></label>
-                <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
-
-                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-            </div>         
-                <button type="submit" class="btn btn-outline-success">Creer</button>           
-
-        </form>
-    </div>
-</div>
+    </section>
 
 @include('themes.includes.footer')
