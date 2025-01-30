@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -46,7 +47,7 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($n)
     {
         //
     }
@@ -54,17 +55,41 @@ class ReservationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        Auth::user();
+        $edit= reservation::findOrFail($id);
+        // dd($edit);
+        return view('dashboard.reservations.edit', compact('edit'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,$edit)
     {
-        //
+        $approuve= reservation::findOrFail($edit);
+        $request->validate([
+            'nom' => 'required',
+            'contact' => 'required',
+            'dateRv' => 'required',
+            'heure' => 'required',
+            'message' => 'required',
+            'id_docteur' =>'required',
+            ]);
+            
+            $approuve->updated([
+                'nom' => $request->nom,
+                'contact' => $request->contact,
+                'dateRv' => $request->dateRv,
+                'heure' => $request->heure,
+                'message' => $request->message,
+                'id_docteur' => $request->id_docteur,
+                'docteur' => $request->docteur,
+            ]);
+            dd($approuve);
+
+            return redirect()->back()->with('success', 'Reservation approuvée !');
     }
 
     /**
@@ -74,4 +99,22 @@ class ReservationController extends Controller
     {
         //
     }
+
+    /**
+     * Reservation en attente.
+     */
+    public function reservationEnAttente()
+    {
+        $attente= reservation::where('statut', 'attente')->get();
+        return view('dashboard.reservations.attente',compact('attente'));
+    }
+    /**
+     * Reservation approuve.
+     */
+    public function reservationApprouve()
+    {
+        $approuve= reservation::where('statut', 'approuve')->get();
+        return view('dashboard.reservations.approuve',compact('approuve'));
+    }
+
 }
