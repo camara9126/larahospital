@@ -1,15 +1,17 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocteurController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
-use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home.index');
 })->name('acceuil');
 
 Route::get('/dashboard', function () {
+    Auth::user();
     return view('dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -21,7 +23,9 @@ Route::middleware('auth')->group(function () {
 
 // Route pour les fichiers Home 
 Route::resource('/docteur', DocteurController::class);
-Route::resource('/reservation', ReservationController::class);
-Route::resource('/reservation', ReservationController::class);
+Route::resource('/reservation', ReservationController::class)->middleware(['auth', 'verified']);
+Route::post('/reservation/{edit}',[ReservationController::class, 'update'])->middleware(['auth', 'verified'])->name('reservation.update');
+Route::get('/attente',[ReservationController::class, 'reservationEnAttente'])->middleware(['auth', 'verified'])->name('attente');
+Route::get('/approuve',[ReservationController::class, 'reservationApprouve'])->middleware(['auth', 'verified'])->name('approuve');
 
 require __DIR__.'/auth.php';
