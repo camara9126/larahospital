@@ -47,7 +47,7 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($n)
+    public function show(string $id)
     {
         //
     }
@@ -75,17 +75,19 @@ class ReservationController extends Controller
             'dateRv' => 'required',
             'heure' => 'required',
             'message' => 'required',
-            'id_docteur' =>'required',
+            'id_docteur' => 'required',
+            'docteur' => 'required'
             ]);
             
-            $approuve->updated([
+            $approuve->update([
                 'nom' => $request->nom,
                 'contact' => $request->contact,
                 'dateRv' => $request->dateRv,
                 'heure' => $request->heure,
                 'message' => $request->message,
                 'id_docteur' => $request->id_docteur,
-                'docteur' => $request->docteur,
+                'statut' => $request->statut,
+                'docteur' => Auth::user()->titre
             ]);
             dd($approuve);
 

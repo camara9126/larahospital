@@ -101,9 +101,9 @@
             </div>
         </div>
     </section>
-
+    <!-- Reservation  -->
         @include('home.reservation')
-
+    <!-- End of Reservation -->
     <section id="contact">
         <div class="container">
             <div class="row pt-5 pb-5">

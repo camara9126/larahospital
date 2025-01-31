@@ -23,8 +23,7 @@ Route::middleware('auth')->group(function () {
 
 // Route pour les fichiers Home 
 Route::resource('/docteur', DocteurController::class);
-Route::resource('/reservation', ReservationController::class)->middleware(['auth', 'verified']);
-Route::post('/reservation/{edit}',[ReservationController::class, 'update'])->middleware(['auth', 'verified'])->name('reservation.update');
+Route::resource('/reservation', ReservationController::class);
 Route::get('/attente',[ReservationController::class, 'reservationEnAttente'])->middleware(['auth', 'verified'])->name('attente');
 Route::get('/approuve',[ReservationController::class, 'reservationApprouve'])->middleware(['auth', 'verified'])->name('approuve');
 

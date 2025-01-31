@@ -20,17 +20,20 @@
                 {{ Session::get('danger') }}
             </div>
         @endif
-        <form action="{{route('reservation.update', $edit->id)}}" method="POST">
-            @csrf;
-            <input type="hidden" value="{{$edit->id_docteur}}" name="id_docteur">
+
+
+        <form action="{{route('reservation.update', $edit->id)}}" method="post">
+            @csrf
+            @method('PUT')
+            <input type="hidden" value="{{$edit->id_docteur}}" required name="id_docteur">
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label for="">Nom complet <span class="text-danger">*</span></label>
-                    <input type="text" value="{{$edit->nom}}" required placeholder=" Entrer votre nom complet" name="nom" class="form-control">
+                    <input type="text" value="{{$edit->nom}}"  name="nom" class="form-control">
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="">Contact <span class="text-danger">*</span></label>
-                    <input type="text" value="{{$edit->contact}}" required placeholder=" Entrer votre adresse mail" name="email" class="form-control">
+                    <input type="text" value="{{$edit->contact}}" name="email" class="form-control">
                 </div>
             </div>
             
@@ -41,17 +44,19 @@
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="">Heure <span class="text-danger">*</span></label>
-                    <input type="time" value="{{$edit->heure}}" name="heure" required class="form-control">
+                    <input type="time" value="{{$edit->heure}}" name="heure" class="form-control">
                 </div>
             </div>
             <div class="form-group">
                 <label for="">Symptômes</label>
-                <textarea name="message" placeholder="Information supplémentaire" class="form-control"> {{$edit->message}}</textarea>
+                <textarea name="message" placeholder="Information supplémentaire" class="form-control">
+                    {{$edit->message}}
+                </textarea>
             </div>
             <div class="row">
-                <input type="hidden" value="{{Auth::user()->titre}}" name="docteur">
+                <button type="submit" class="btn btn-outline-success">Approuvé</button>
             </div>
-            <button type="submit" id="" class="btn btn-outline-success">Approuvé</button>
+            
         </form>
     </div>
 </div>

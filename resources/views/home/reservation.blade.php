@@ -17,7 +17,7 @@
                 @csrf
                 <div class="row">
                     <div class="col-md-6 form-group">
-                        <label for="">Nom complet <span class="text-danger">*</span></label>
+                        <label for="name">Nom complet <span class="text-danger">*</span></label>
                         <input type="text" required placeholder="Entrer votre nom complet" name="nom" class="form-control">
                     </div>        
                     <div class="col-md-6 form-group">

@@ -34,8 +34,8 @@
                                     <td>{{$n->heure}}</td>
                                     <td>{{$n->created_at}}</td>
                                     <td>
-                                        <a href="/reservation/{{$n->id}}/edit" class="btn btn-outline-info btn-round btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <!-- <a href="?page=rv&type=new&valid=<?= $n->id ?>" class="btn btn-outline-success btn-round btn-sm" title="approuvé"><i class=" fa fa-check" aria-hidden="true"></i></a> -->
+                                        <a href="{{route('reservation.edit', $n->id)}}" class="btn btn-outline-info btn-round btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a href="{{route('reservation.update', $n->id)}}" class="btn btn-outline-success btn-round btn-sm" title="approuvé"><i class=" fa fa-check" aria-hidden="true"></i></a>
                                         <!-- <a href="?page=rv&type=new&rejet=<?= $n->id ?>" class="btn btn-outline-warning btn-round btn-sm" title="rejeté"><i class="fa fa-times" aria-hidden="true"></i></a> -->
                                         <!-- <a class="btn btn-outline-danger btn-sm" href="#" data-toggle="modal" data-target="#delete" title="supprimer">
                                             <i class="fas fa-trash"></i>
